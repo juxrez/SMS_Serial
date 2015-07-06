@@ -1,0 +1,12 @@
+C:\Users\AlexisJuarez\Documents\Visual Studio 2013\Projects\MSW_asistencia\sms_serial\sms_serial\bin\Debug\sms_serial.exe.config
+C:\Users\AlexisJuarez\Documents\Visual Studio 2013\Projects\MSW_asistencia\sms_serial\sms_serial\bin\Debug\sms_serial.exe
+C:\Users\AlexisJuarez\Documents\Visual Studio 2013\Projects\MSW_asistencia\sms_serial\sms_serial\bin\Debug\sms_serial.pdb
+C:\Users\AlexisJuarez\Documents\Visual Studio 2013\Projects\MSW_asistencia\sms_serial\sms_serial\obj\Debug\sms_serial.csprojResolveAssemblyReference.cache
+C:\Users\AlexisJuarez\Documents\Visual Studio 2013\Projects\MSW_asistencia\sms_serial\sms_serial\obj\Debug\sms_serial.Properties.Resources.resources
+C:\Users\AlexisJuarez\Documents\Visual Studio 2013\Projects\MSW_asistencia\sms_serial\sms_serial\obj\Debug\sms_serial.csproj.GenerateResource.Cache
+C:\Users\AlexisJuarez\Documents\Visual Studio 2013\Projects\MSW_asistencia\sms_serial\sms_serial\obj\Debug\sms_serial.exe
+C:\Users\AlexisJuarez\Documents\Visual Studio 2013\Projects\MSW_asistencia\sms_serial\sms_serial\obj\Debug\sms_serial.pdb
+C:\Users\AlexisJuarez\Documents\Visual Studio 2013\Projects\MSW_asistencia\sms_serial\sms_serial\obj\Debug\sms_serial.frmSerialCom.resources
+C:\Users\AlexisJuarez\Documents\Visual Studio 2015\Projects\sms_serial\sms_serial\bin\Debug\sms_serial.exe.config
+C:\Users\AlexisJuarez\Documents\Visual Studio 2015\Projects\sms_serial\sms_serial\obj\Debug\sms_serial.exe
+C:\Users\AlexisJuarez\Documents\Visual Studio 2015\Projects\sms_serial\sms_serial\obj\Debug\sms_serial.pdb
