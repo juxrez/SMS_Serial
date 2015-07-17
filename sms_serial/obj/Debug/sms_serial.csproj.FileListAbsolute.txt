@@ -19,3 +19,6 @@ C:\Users\AlexisJuarez\Documents\Visual Studio 2015\Projects\sms_serial\sms_seria
 C:\Users\AlexisJuarez\Documents\Visual Studio 2015\Projects\sms_serial\sms_serial\bin\Debug\policy.6.0.FarPoint.Win.Spread.dll
 C:\Users\AlexisJuarez\Documents\Visual Studio 2015\Projects\sms_serial\sms_serial\bin\Debug\policy.6.0.FarPoint.Win.Spread.config
 C:\Users\AlexisJuarez\Documents\Visual Studio 2015\Projects\sms_serial\sms_serial\obj\Debug\sms_serial.exe.licenses
+d:\Proyectos_2015\sms_Serial\sms_serial\bin\Debug\sms_serial.exe.config
+d:\Proyectos_2015\sms_Serial\sms_serial\obj\Debug\sms_serial.exe
+d:\Proyectos_2015\sms_Serial\sms_serial\obj\Debug\sms_serial.pdb

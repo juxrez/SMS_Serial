@@ -23,12 +23,23 @@ namespace sms_serial
         string preMsg; //menasaje predefido en caso de que se active la casilla 
         int lastRow; //numero de registros que hay en la DB
         bool enviar = false; //bandera que va a indicar cuando enviar un msj
+        public delegate void _smsEnviado(bool enviado);
+        private bool statausEnviado = false;
+
+        public event _smsEnviado smsEnviado;
+
         string txt;
         public frmSerialCom()
         {
             InitializeComponent();
             this.rutaDB = Application.StartupPath + @"\data\data.xlsx";
+            this.smsEnviado += frmSerialCom_smsEnviado;
             
+        }
+
+        void frmSerialCom_smsEnviado(bool enviado)
+        {
+            this.statausEnviado = true;
         }
 
  
@@ -44,7 +55,13 @@ namespace sms_serial
             {
                 MessageBox.Show("OK");
             }
-            
+            if(smsEnviado!=null)
+            {
+                if (txt == "OK")
+                {
+                    smsEnviado(true);
+                }
+            }
           //  txtRecibir.Text = "OK";
         }
         //form load
@@ -96,6 +113,11 @@ namespace sms_serial
                 for (int i = 0; i <= lastRow; i++)
                 {
                     
+                    while(!this.statausEnviado)
+                    {
+
+                    }
+                    this.statausEnviado = false;
                 }
               
             }
@@ -104,6 +126,7 @@ namespace sms_serial
                 MessageBox.Show("Abra el puerto primero");
             }
         }
+
 
         //boton conectar
         private void conectar ()
