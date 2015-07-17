@@ -9,16 +9,25 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO.Ports;
 using System.Threading;
+using System.IO;
+
 namespace sms_serial
 {
-    
+
     public partial class frmSerialCom : Form
     {
 
-
+        string rutaRaiz; //ruta donde tiene que estar la base de datos
+        string rutaDB; //ruta de la base de datos 
+        string rutaDBNew; //ruta de la base de datos nueva que se debe poner en la raíz 
+        string preMsg; //menasaje predefido en caso de que se active la casilla 
+        int lastRow; //numero de registros que hay en la DB
+        bool enviar = false; //bandera que va a indicar cuando enviar un msj
+        string txt;
         public frmSerialCom()
         {
             InitializeComponent();
+            this.rutaDB = Application.StartupPath + @"\data\data.xlsx";
             
         }
 
@@ -26,16 +35,33 @@ namespace sms_serial
         //Funcion para recibir datos
         public void serialPort1_DataReceived(object sender , System.IO.Ports.SerialDataReceivedEventArgs e)
         {
+            string ok = "OK";
            // MessageBox.Show(serialPort1.ReadExisting());
+            txt = serialPort1.ReadExisting().ToString();
+           // this.txtRecibir.Text += serialPort1.ReadExisting().ToString() + "\n";
+            txtRecibir.Text += txt + "\n";
+            if (txt == ok || txt == "ok")
+            {
+                MessageBox.Show("OK");
+            }
             
-            this.txtRecibir.Text += serialPort1.ReadExisting().ToString() + "\n";
           //  txtRecibir.Text = "OK";
         }
         //form load
         private void frmSerialCom_Load(object sender, EventArgs e)
         {
-            buscarPuertos();
+            buscarPuertos(); //cargar puertos activos
             CheckForIllegalCrossThreadCalls = false; //evitar que se verifiquen llamadas ilegales entre hilos
+            try
+            {
+               // fpsNumeros.ActiveSheet.OpenExcel(rutaDB, 0);
+            }
+            catch
+            {
+                MessageBox.Show("No se pudo abrir la base de datos");
+            }
+            fpsNumeros.ActiveSheet.Columns.Count = 6;
+            //fpsTest.ActiveSheet.Columns.Count = 6;
         }
 
         private void buscarPuertos ()
@@ -55,19 +81,23 @@ namespace sms_serial
             //estructura de los comandos AT para enviar sms
             if ((serialPort1 != null) && (serialPort1.IsOpen == true))
             {
-                string msg = txtEnviar.Text;
-                string numero = txtNumero.Text;
-                char diag = (char) 92;
-                char tab = (char)26;
-                char comillas = (char)34;
-                serialPort1.Write("AT + CMGS = " + comillas + "+52" + numero + comillas + char.ConvertFromUtf32(13)); //"AT + CMGS = \"+12128675309\""
-                Thread.Sleep(300);
-                
-                serialPort1.Write(msg + char.ConvertFromUtf32(26));
-                Thread.Sleep(100);
-                //serialPort1.Write();
-                Thread.Sleep(2000);
-              //  serialPort1.DataReceived += new SerialDataReceivedEventHandler(this.serialPort1_DataReceived);
+                //preMsg = txtEnviar.Text;
+                //string numero = txtNumero.Text;
+                //char diag = (char)92;
+                //char tab = (char)26;
+                //char comillas = (char)34;
+                //serialPort1.Write("AT + CMGS = " + comillas + "+52" + numero + comillas + char.ConvertFromUtf32(13)); //"AT + CMGS = \"+12128675309\""
+                //Thread.Sleep(300);
+                //serialPort1.Write(preMsg + char.ConvertFromUtf32(26));
+                //Thread.Sleep(100);
+                //Thread.Sleep(2000);
+                preMsg = txtEnviar.Text;
+                lastRow = fpsNumeros.ActiveSheet.NonEmptyRowCount;
+                for (int i = 0; i <= lastRow; i++)
+                {
+                    
+                }
+              
             }
             else
             {
@@ -93,6 +123,7 @@ namespace sms_serial
                         rbRecibir.Enabled = true;
                         rbEnviar.Enabled = true;
                         btnSaldo.Enabled = true;
+                        //groupBox2.Enabled = true;
                         //  btnConectar.Enabled = false;
                         serialPort1.DataReceived += new SerialDataReceivedEventHandler(this.serialPort1_DataReceived);
 
@@ -185,6 +216,64 @@ namespace sms_serial
             {
                 MessageBox.Show("Abra el puerto primero");
             }
+        }
+
+        private void btnActualizar_Click(object sender, EventArgs e)
+        {
+            int numCeldas; // numero de celdas que va a tener el spread de la base de datos para que no haya un chingo   
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Filter = "Archivos .xls (*.xls;*.xlsx)|*.xls;*.xlsx";
+            dialog.Title = "Seleccione DB";
+            dialog.FileName = string.Empty;
+            if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                rutaDBNew = dialog.FileName;
+                try
+                {
+
+                    if (!Directory.Exists(Path.GetDirectoryName(this.rutaDB))) //comprobar el directorio
+                    {
+                        Directory.CreateDirectory(Path.GetDirectoryName(this.rutaDB));
+                    }
+                    if (File.Exists(rutaDB))
+                    {
+                        File.Delete(rutaDB);
+                    }
+                    File.Copy(rutaDBNew, rutaDB); // mover el archivo al destino
+                    MessageBox.Show("Base de Datos actualizada");
+                    fpsNumeros.ActiveSheet.OpenExcel(rutaDB, 0);
+                    fpsNumeros.ActiveSheet.Columns.Count = 2;
+                   // fpsTest.ActiveSheet.Columns.Count = 6;
+                    
+                }
+                catch (IOException ex)
+                {
+                    MessageBox.Show("Falló en la operación", ex.Message); 
+                }
+                numCeldas = fpsNumeros.ActiveSheet.NonEmptyRowCount;
+                fpsNumeros.ActiveSheet.RowCount = numCeldas;
+            }    
+        }
+
+        private void LeerDB() //funcion donde se leen todos numeros de telefono de la base de datos 
+        {
+            int i;
+            lastRow = fpsNumeros.ActiveSheet.NonEmptyRowCount;
+            for (i=0; i<=lastRow; i++)
+            {
+               
+            }
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked == true)
+            {
+                preMsg = txtEnviar.Text;
+                txtEnviar.Enabled = false;
+            }
+            if (checkBox1.Checked == false)
+                txtEnviar.Enabled = true;
         }
     }
 }
