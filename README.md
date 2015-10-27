@@ -1,12 +1,12 @@
 # SMS_Serial
 Send SMS using C# and SIM900 Module with FarPoint Spread
 
-#Software
+##Software
 This App uses Farpoint Spread to read an Excel File with phone numbers inside and sends SMS to each one.
 	
 
 
-#Instructions for use
+##Instructions for use
 * Install Farpoint Spread and add all references for windows Forms.
 	
 * I have used this module: http://www.seeedstudio.com/wiki/GPRS_Shield_V1.0
