@@ -7,7 +7,7 @@ This App uses Farpoint Spread to read an Excel File with phone numbers inside an
 
 
 #Instructions for use
-Install Farpoint Spread and add all references for windows Forms.
+* Install Farpoint Spread and add all references for windows Forms.
 	
 * I have used this module: http://www.seeedstudio.com/wiki/GPRS_Shield_V1.0
 	
