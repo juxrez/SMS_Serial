@@ -9,12 +9,12 @@ This App uses Farpoint Spread to read an Excel File with phone numbers inside an
 #Instructions for use
 Install Farpoint Spread and add all references for windows Forms.
 	
--I have used this module: http://www.seeedstudio.com/wiki/GPRS_Shield_V1.0
+*I have used this module: http://www.seeedstudio.com/wiki/GPRS_Shield_V1.0
 	
--You should also buy a USB-TTL cable like this: http://www.adafruit.com/product/954
+*You should also buy a USB-TTL cable like this: http://www.adafruit.com/product/954
 	
--Connect TX and RX in the correct way (Depending module and USB cable).
+*Connect TX and RX in the correct way (Depending module and USB cable).
 	
--Select COM port on Software. 
+*Select COM port on Software. 
 	
--Send
+*Send
