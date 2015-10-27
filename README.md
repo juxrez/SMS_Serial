@@ -2,7 +2,7 @@
 Send SMS using C# and SIM900 Module with FarPoint Spread
 
 #Software
-	This App uses Farpoint Spread to read an Excel File with phone numbers inside and sends SMS to each one.
+This App uses Farpoint Spread to read an Excel File with phone numbers inside and sends SMS to each one.
 	
 
 
